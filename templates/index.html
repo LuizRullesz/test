@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Reseter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        .loading {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Auto Reseter</h1>
+        <p>Max Accounts: 30</p>
+        <div class="textarea-container">
+            <textarea id="accountsTextarea" placeholder="Accounts to be checked" oninput="updateAccountCount()" maxlength="3000"></textarea>
+        </div>
+       <div class="account-action">
+		  <label class="account-check" id="accountCheckLabel">Accounts to be reset (0)</label>
+		  <select id="serverSelect">
+			<option value="8">Aquarios (Servidor 8)</option>
+			<option value="4">Perdeus (Servidor 4)</option>
+		  </select>
+		  <button class="start-script" onclick="sendRequests()">Start Script</button>
+		  <div class="loading" id="loadingIndicator"></div>
+		</div>
+        <div class="controls">
+            <table id="accountsTable">
+                <tr>
+                    <th class="control">Account Details</th>
+                    <th class="control">Status </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
